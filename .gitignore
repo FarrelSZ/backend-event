@@ -1,0 +1,5 @@
+# Jangan upload node_modules ke GitHub
+node_modules/
+
+# Jangan upload file environment
+.env
