@@ -1,4 +1,3 @@
-import { version } from "mongoose";
 import swaggerAutogen from "swagger-autogen";
 
 const doc = {

@@ -117,9 +117,7 @@ export default {
   async me(req: IReqUser, res: Response) {
     /**
       #swagger.tags = ['Auth']
-      #swagger.security = {
-        "bearerAuth": []
-      }
+      #swagger.security = [{ "bearerAuth": [] }]
      */
     try {
       const user = req.user;
