@@ -90,13 +90,13 @@ export default {
         isActive: true,
       });
       if (!userByIdentifier) {
-        return res.status(404).json({ message: "User not found", data: null });
+        return res.status(403).json({ message: "User not found", data: null });
       }
 
       // Validasi password
       const validatePassword: boolean = encrypt(password) === userByIdentifier.password;
       if (!validatePassword) {
-        return res.status(400).json({ message: "Invalid password", data: null });
+        return res.status(403).json({ message: "Invalid password", data: null });
       }
 
       const token = generateToken({
@@ -144,7 +144,11 @@ export default {
     try {
       const { code } = req.body as { code: string };
 
-      const user = await UserModel.findOne({ activationCode: code, isActive: true, new: true });
+      const user = await UserModel.findOneAndUpdate(
+        { activationCode: code }, // 📍 FILTER (cari yang mana)
+        { isActive: true }, // ✏️ UPDATE (ubah apa)
+        { new: true }
+      );
 
       res.status(200).json({
         message: "Success get user profile",
