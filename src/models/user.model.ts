@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { encrypt } from "../utils/encryption";
 import { renderMailHtml, sendEmail } from "../utils/mail/mail";
 import { CLIENT_HOST, EMAIL_SMTP_USER } from "../utils/env";
+import { ROLES } from "../utils/constant";
 
 export interface User {
   fullname: string;
@@ -23,7 +24,7 @@ const UserSchema = new Schema<User>(
     username: { type: Schema.Types.String, required: true, unique: true },
     email: { type: Schema.Types.String, required: true, unique: true },
     password: { type: Schema.Types.String, required: true },
-    role: { type: Schema.Types.String, enum: ["admin", "user"], default: "user" },
+    role: { type: Schema.Types.String, enum: [ROLES.ADMIN, ROLES.MEMBER], default: ROLES.MEMBER },
     profilePicture: { type: Schema.Types.String, default: "user.jpg" },
     isActive: { type: Schema.Types.Boolean, default: false },
     activationCode: { type: Schema.Types.String },
