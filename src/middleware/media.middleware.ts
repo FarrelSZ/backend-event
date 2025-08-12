@@ -4,8 +4,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 export default {
-  single(fieldnName: string) {
-    return upload.single(fieldnName);
+  single(fieldName: string) {
+    return upload.single(fieldName);
   },
   multiple(fieldName: string) {
     return upload.array(fieldName);
