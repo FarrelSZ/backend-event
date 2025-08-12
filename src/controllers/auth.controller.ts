@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import UserModel from "../models/user.model";
 import { encrypt } from "../utils/encryption";
 import { generateToken } from "../utils/jwt";
-import { IReqUser } from "../middleware/auth.middleware";
+import { IReqUser } from "../utils/interface";
 
 type TRegister = {
   fullname: string;
