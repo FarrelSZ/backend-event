@@ -44,7 +44,7 @@ const doc = {
         description: "",
         icon: "",
       },
-      CreateEventRequest: {
+      CreateEventsRequest: {
         name: "",
         banner: "fileUrl",
         category: "category objectID",

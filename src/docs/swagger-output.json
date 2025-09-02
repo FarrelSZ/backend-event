@@ -787,7 +787,7 @@
           "name": "CreateCategoryRequest"
         }
       },
-      "CreateEventRequest": {
+      "CreateEventsRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -847,7 +847,7 @@
           }
         },
         "xml": {
-          "name": "CreateEventRequest"
+          "name": "CreateEventsRequest"
         }
       },
       "RemoveMediaRequest": {
