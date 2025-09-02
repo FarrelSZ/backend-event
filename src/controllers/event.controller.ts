@@ -6,6 +6,14 @@ import { FilterQuery } from "mongoose";
 
 export default {
   async create(req: IReqUser, res: Response) {
+    /**
+     #swagger.tags = ['Events']
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.requestBody = {
+     required: true,
+     schema: {$ref: "#/components/schemas/CreateEventsRequest"}
+     }
+     */
     try {
       const payload = { ...req.body, createdBy: req.user?.id } as TypeEvent;
       await eventDAO.validate(payload);
