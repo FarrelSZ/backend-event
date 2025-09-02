@@ -56,6 +56,7 @@ const doc = {
           coordinates: [0, 0],
           _id: "689da3cb266be44e38078031",
         },
+        address: "",
         isOnline: false,
         isFeatured: false,
       },

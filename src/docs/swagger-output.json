@@ -837,6 +837,10 @@
               }
             }
           },
+          "address": {
+            "type": "string",
+            "example": ""
+          },
           "isOnline": {
             "type": "boolean",
             "example": false
