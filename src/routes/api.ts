@@ -8,6 +8,7 @@ import mediaController from "../controllers/media.controller";
 import categoryController from "../controllers/category.controller";
 import regionController from "../controllers/region.controller";
 import eventController from "../controllers/event.controller";
+import ticketController from "../controllers/ticket.controller";
 
 const router = express.Router();
 
@@ -212,10 +213,33 @@ router.get(
   "/events",
   eventController.findAll
   /*
-    #swagger.tags = ['Events']
-    #swagger.security = [{ 
-      "bearerAuth": {}
-    }]
+  #swagger.tags = ['Events']
+  #swagger.parameters['limit'] = {
+    in: 'query',
+    type: 'number',
+    default: 10
+  }
+  #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1
+  }
+  #swagger.parameters['category'] = {
+    in: 'query',
+    type: 'string'
+  }
+  #swagger.parameters['isOnline'] = {
+    in: 'query',
+    type: 'boolean'
+  }
+  #swagger.parameters['isPublish'] = {
+    in: 'query',
+    type: 'boolean'
+  }
+  #swagger.parameters['isFeatured'] = {
+    in: 'query',
+    type: 'boolean'
+  }
   */
 );
 router.get(
@@ -258,5 +282,13 @@ router.get(
     #swagger.tags = ['Events']
   */
 );
+
+//ticket
+router.post("/tickets", [authMiddleware, aclMiddleware([ROLES.ADMIN])], ticketController.create);
+router.get("/tickets", ticketController.findAll);
+router.get("/tickets/:id", ticketController.findOne);
+router.put("/tickets/:id", [authMiddleware, aclMiddleware([ROLES.ADMIN])], ticketController.update);
+router.delete("/tickets/:id", [authMiddleware, aclMiddleware([ROLES.ADMIN])], ticketController.remove);
+router.get("/tickets/:eventId/events", ticketController.findAllByEvent);
 
 export default router;
