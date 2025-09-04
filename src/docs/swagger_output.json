@@ -1,18 +1,18 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Dokumentasi API Event",
-    "description": "Dokumentasi API Event"
+    "version": "v0.0.1",
+    "title": "Dokumentasi API ACARA",
+    "description": "Dokumentasi API ACARA"
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
-      "description": "Local server"
+      "url": "http://localhost:3001/api",
+      "description": "Local Server"
     },
     {
-      "url": "https://backend-event-farrel.vercel.app/api",
-      "description": "Production server"
+      "url": "https://back-end-acara.vercel.app/api",
+      "description": "Deploy Server"
     }
   ],
   "paths": {
@@ -1067,11 +1067,11 @@
         "properties": {
           "identifier": {
             "type": "string",
-            "example": "FarrelSZ"
+            "example": "agung2025"
           },
           "password": {
             "type": "string",
-            "example": "Farrel123"
+            "example": "Agung2025!"
           }
         },
         "xml": {
@@ -1118,6 +1118,42 @@
           "name": "ActivationRequest"
         }
       },
+      "UpdateProfileRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": ""
+          },
+          "profilePicture": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "xml": {
+          "name": "UpdateProfileRequest"
+        }
+      },
+      "UpdatePasswordRequest": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "example": ""
+          },
+          "password": {
+            "type": "string",
+            "example": ""
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "xml": {
+          "name": "UpdatePasswordRequest"
+        }
+      },
       "CreateCategoryRequest": {
         "type": "object",
         "properties": {
@@ -1138,7 +1174,7 @@
           "name": "CreateCategoryRequest"
         }
       },
-      "CreateEventsRequest": {
+      "CreateEventRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -1151,7 +1187,7 @@
           },
           "category": {
             "type": "string",
-            "example": "category objectID"
+            "example": "category ObjectID"
           },
           "description": {
             "type": "string",
@@ -1169,8 +1205,8 @@
             "type": "object",
             "properties": {
               "region": {
-                "type": "string",
-                "example": "region id"
+                "type": "number",
+                "example": 3273
               },
               "coordinates": {
                 "type": "array",
@@ -1182,15 +1218,11 @@
                   "type": "number"
                 }
               },
-              "_id": {
+              "address": {
                 "type": "string",
-                "example": "689da3cb266be44e38078031"
+                "example": ""
               }
             }
-          },
-          "address": {
-            "type": "string",
-            "example": ""
           },
           "isOnline": {
             "type": "boolean",
@@ -1199,10 +1231,14 @@
           "isFeatured": {
             "type": "boolean",
             "example": false
+          },
+          "isPublish": {
+            "type": "boolean",
+            "example": false
           }
         },
         "xml": {
-          "name": "CreateEventsRequest"
+          "name": "CreateEventRequest"
         }
       },
       "RemoveMediaRequest": {
@@ -1215,6 +1251,74 @@
         },
         "xml": {
           "name": "RemoveMediaRequest"
+        }
+      },
+      "CreateBannerRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Banner 3 - Title"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/five-code/image/upload/v1734918925/f70vpihmblj8lvdmdcrs.png"
+          },
+          "isShow": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "xml": {
+          "name": "CreateBannerRequest"
+        }
+      },
+      "CreateTicketRequest": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "example": 1500
+          },
+          "name": {
+            "type": "string",
+            "example": "Ticket Reguler"
+          },
+          "events": {
+            "type": "string",
+            "example": "6762aa5dacb76a9b3e2cb1da"
+          },
+          "description": {
+            "type": "string",
+            "example": "Ticket Reguler - Description"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 100
+          }
+        },
+        "xml": {
+          "name": "CreateTicketRequest"
+        }
+      },
+      "CreateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "string",
+            "example": "event object id"
+          },
+          "ticket": {
+            "type": "string",
+            "example": "ticket object id"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 1
+          }
+        },
+        "xml": {
+          "name": "CreateOrderRequest"
         }
       }
     }

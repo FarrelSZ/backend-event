@@ -2,21 +2,20 @@ import swaggerAutogen from "swagger-autogen";
 
 const doc = {
   info: {
-    version: "1.0.0",
-    title: "Dokumentasi API Event",
-    description: "Dokumentasi API Event",
+    version: "v0.0.1",
+    title: "Dokumentasi API ACARA",
+    description: "Dokumentasi API ACARA",
   },
   servers: [
     {
-      url: "http://localhost:3000/api",
-      description: "Local server",
+      url: "http://localhost:3001/api",
+      description: "Local Server",
     },
     {
-      url: "https://backend-event-farrel.vercel.app/api",
-      description: "Production server",
+      url: "https://back-end-acara.vercel.app/api",
+      description: "Deploy Server",
     },
   ],
-
   components: {
     securitySchemes: {
       bearerAuth: {
@@ -26,8 +25,8 @@ const doc = {
     },
     schemas: {
       LoginRequest: {
-        identifier: "FarrelSZ",
-        password: "Farrel123",
+        identifier: "agung2025",
+        password: "Agung2025!",
       },
       RegisterRequest: {
         fullName: "member2025",
@@ -39,35 +38,61 @@ const doc = {
       ActivationRequest: {
         code: "abcdef",
       },
+      UpdateProfileRequest: {
+        fullName: "",
+        profilePicture: "",
+      },
+      UpdatePasswordRequest: {
+        oldPassword: "",
+        password: "",
+        confirmPassword: "",
+      },
       CreateCategoryRequest: {
         name: "",
         description: "",
         icon: "",
       },
-      CreateEventsRequest: {
+      CreateEventRequest: {
         name: "",
         banner: "fileUrl",
-        category: "category objectID",
+        category: "category ObjectID",
         description: "",
         startDate: "yyyy-mm-dd hh:mm:ss",
         endDate: "yyyy-mm-dd hh:mm:ss",
         location: {
-          region: "region id",
+          region: 3273,
           coordinates: [0, 0],
-          _id: "689da3cb266be44e38078031",
+          address: "",
         },
-        address: "",
         isOnline: false,
         isFeatured: false,
+        isPublish: false,
       },
       RemoveMediaRequest: {
         fileUrl: "",
+      },
+      CreateBannerRequest: {
+        title: "Banner 3 - Title",
+        image: "https://res.cloudinary.com/five-code/image/upload/v1734918925/f70vpihmblj8lvdmdcrs.png",
+        isShow: false,
+      },
+      CreateTicketRequest: {
+        price: 1500,
+        name: "Ticket Reguler",
+        events: "6762aa5dacb76a9b3e2cb1da",
+        description: "Ticket Reguler - Description",
+        quantity: 100,
+      },
+      CreateOrderRequest: {
+        events: "event object id",
+        ticket: "ticket object id",
+        quantity: 1,
       },
     },
   },
 };
 
-const outputFile = "./swagger-output.json";
+const outputFile = "./swagger_output.json";
 const endpointsFiles = ["../routes/api.ts"];
 
 swaggerAutogen({ openapi: "3.0.0" })(outputFile, endpointsFiles, doc);
