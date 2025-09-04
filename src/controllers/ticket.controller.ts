@@ -49,6 +49,9 @@ export default {
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "ticket not found");
+      }
       const result = await TicketModel.findById(id);
 
       if (!result) {
@@ -63,7 +66,11 @@ export default {
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "ticket id not found");
+      }
       const result = await TicketModel.findByIdAndUpdate(id, req.body, { new: true });
+
       response.success(res, result, "success update a ticket");
     } catch (error) {
       response.error(res, error, "failed to update a ticket");

@@ -2,7 +2,7 @@ import { Response } from "express";
 import { IPaginationQuery, IReqUser } from "../utils/interface";
 import response from "../utils/response";
 import BannerModel, { bannerDao, TypeBanner } from "../models/banner.model";
-import { FilterQuery } from "mongoose";
+import { FilterQuery, isValidObjectId } from "mongoose";
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -48,6 +48,9 @@ export default {
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "banner not found");
+      }
       const result = await BannerModel.findById(id);
 
       if (!result) {
@@ -62,7 +65,11 @@ export default {
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "banner id not found");
+      }
       const result = await BannerModel.findByIdAndUpdate(id, req.body, { new: true });
+
       response.success(res, result, "succes to update a banner");
     } catch (error) {
       response.error(res, error, "failed to update a banner");

@@ -2,6 +2,7 @@ import { Response } from "express";
 import { IPaginationQuery, IReqUser } from "../utils/interface";
 import CategoryModel, { categoryDao } from "../models/category.model";
 import response from "../utils/response";
+import { isValidObjectId } from "mongoose";
 
 export default {
   // ============================================
@@ -78,6 +79,9 @@ export default {
 
       // Cari category berdasarkan _id di MongoDB
       // findById() adalah method Mongoose untuk cari berdasarkan ObjectId, Akan return null jika tidak ditemukan
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "category not found");
+      }
       const result = await CategoryModel.findById(id);
 
       if (!result) {
@@ -103,7 +107,11 @@ export default {
       // - filter: { _id: id } = cari dokumen dengan _id = id
       // - update: req.body = data baru untuk replace ganti dengan data dari request body
       // - options: { new: true } = return hasil setelah update
+      if (!isValidObjectId(id)) {
+        return response.notFound(res, "category id not found");
+      }
       const result = await CategoryModel.findOneAndUpdate({ _id: id }, req.body, { new: true });
+
       response.success(res, result, "success update category");
     } catch (error) {
       response.error(res, error, "failed update category");
