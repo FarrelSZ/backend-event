@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
+      "url": "http://localhost:3001/api",
       "description": "Local server"
     },
     {
@@ -18,9 +18,7 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -57,9 +55,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -85,9 +81,7 @@
     },
     "/auth/me": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -103,9 +97,7 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -131,9 +123,7 @@
     },
     "/media/upload-single": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "responses": {
           "default": {
@@ -165,9 +155,7 @@
     },
     "/media/upload-multiple": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "responses": {
           "default": {
@@ -202,9 +190,7 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "responses": {
           "default": {
@@ -235,9 +221,7 @@
     },
     "/category": {
       "post": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "description": "",
         "responses": {
           "default": {
@@ -266,9 +250,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "description": "",
         "parameters": [
           {
@@ -302,9 +284,7 @@
     },
     "/category/{id}": {
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "description": "",
         "parameters": [
           {
@@ -323,9 +303,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "description": "",
         "parameters": [
           {
@@ -364,9 +342,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "description": "",
         "parameters": [
           {
@@ -392,9 +368,7 @@
     },
     "/regions": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "responses": {
           "default": {
@@ -405,9 +379,7 @@
     },
     "/regions/{id}/province": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -428,9 +400,7 @@
     },
     "/regions/{id}/regency": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -451,9 +421,7 @@
     },
     "/regions/{id}/district": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -474,9 +442,7 @@
     },
     "/regions/{id}/village": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -497,9 +463,7 @@
     },
     "/regions-search": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -519,9 +483,7 @@
     },
     "/events": {
       "post": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "responses": {
           "default": {
@@ -550,9 +512,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -616,9 +576,7 @@
     },
     "/events/{id}": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -637,9 +595,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -678,9 +634,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -706,9 +660,7 @@
     },
     "/events/{slug}/slug": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -725,6 +677,321 @@
             "description": ""
           }
         }
+      }
+    },
+    "/tickets": {
+      "post": {
+        "tags": ["Banners"],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBannerRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBannerRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Banners"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/tickets/{id}": {
+      "get": {
+        "tags": ["Banners"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": ["Banners"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBannerRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBannerRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Banners"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ]
+      }
+    },
+    "/tickets/{eventId}/events": {
+      "get": {
+        "tags": ["Tickets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/banners": {
+      "post": {
+        "tags": ["Tickets"],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Tickets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/banners/{id}": {
+      "get": {
+        "tags": ["Tickets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": ["Tickets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tickets"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": {}
+          }
+        ]
       }
     }
   },
@@ -848,10 +1115,7 @@
               },
               "coordinates": {
                 "type": "array",
-                "example": [
-                  0,
-                  0
-                ],
+                "example": [0, 0],
                 "items": {
                   "type": "number"
                 }
