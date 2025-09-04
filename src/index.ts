@@ -8,7 +8,7 @@ import cors from "cors";
 async function init() {
   try {
     const app = express();
-    const PORT = 3001;
+    const PORT = 3000;
 
     const result = await db();
     console.log("database status", result);
