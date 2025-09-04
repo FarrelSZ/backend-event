@@ -304,14 +304,14 @@ router.get(
   "/tickets",
   ticketController.findAll
   /*
-    #swagger.tags = ['Banners']
+    #swagger.tags = ['Tickets']
   */
 );
 router.get(
   "/tickets/:id",
   ticketController.findOne
   /*
-    #swagger.tags = ['Banners']
+    #swagger.tags = ['Tickets']
   */
 );
 router.put(
@@ -319,14 +319,14 @@ router.put(
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
   ticketController.update
   /*
-  #swagger.tags = ['Banners']
+  #swagger.tags = ['Tickets']
   #swagger.security = [{
     "bearerAuth": {}
   }]
   #swagger.requestBody = {
     required: true,
     schema: {
-      $ref: "#/components/schemas/CreateBannerRequest"
+      $ref: "#/components/schemas/CreateTicketRequest"
     }
   }
   */
@@ -336,7 +336,7 @@ router.delete(
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
   ticketController.remove
   /*
-  #swagger.tags = ['Banners']
+  #swagger.tags = ['Tickets']
   #swagger.security = [{
     "bearerAuth": {}
   }]
@@ -356,14 +356,14 @@ router.post(
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
   bannerController.create
   /*
-  #swagger.tags = ['Tickets']
+  #swagger.tags = ['Banners']
   #swagger.security = [{
     "bearerAuth": {}
   }]
   #swagger.requestBody = {
     required: true,
     schema: {
-      $ref: "#/components/schemas/CreateTicketRequest"
+      $ref: "#/components/schemas/CreateBannerRequest"
     }
   }
   */
@@ -372,14 +372,14 @@ router.get(
   "/banners",
   bannerController.findAll
   /*
-  #swagger.tags = ['Tickets']
+  #swagger.tags = ['Banners']
   */
 );
 router.get(
   "/banners/:id",
   bannerController.findOne
   /*
-  #swagger.tags = ['Tickets']
+  #swagger.tags = ['Banners']
   */
 );
 router.put(
@@ -387,14 +387,14 @@ router.put(
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
   bannerController.update
   /*
-  #swagger.tags = ['Tickets']
+  #swagger.tags = ['Banners']
   #swagger.security = [{
     "bearerAuth": {}
   }]
   #swagger.requestBody = {
     required: true,
     schema: {
-      $ref: "#/components/schemas/CreateTicketRequest"
+      $ref: "#/components/schemas/CreateBannerRequest"
     }
   }
   */
@@ -404,7 +404,7 @@ router.delete(
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
   bannerController.remove
   /*
-  #swagger.tags = ['Tickets']
+  #swagger.tags = ['Banners']
   #swagger.security = [{
     "bearerAuth": {}
   }]
