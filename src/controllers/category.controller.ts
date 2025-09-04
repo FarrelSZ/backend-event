@@ -79,6 +79,11 @@ export default {
       // Cari category berdasarkan _id di MongoDB
       // findById() adalah method Mongoose untuk cari berdasarkan ObjectId, Akan return null jika tidak ditemukan
       const result = await CategoryModel.findById(id);
+
+      if (!result) {
+        return response.notFound(res, "category not found");
+      }
+
       response.success(res, result, "success findOne category");
     } catch (error) {
       response.error(res, error, "failed findOne category");
