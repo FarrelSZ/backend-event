@@ -6,14 +6,6 @@ import { FilterQuery, isValidObjectId } from "mongoose";
 
 export default {
   async create(req: IReqUser, res: Response) {
-    /**
-     #swagger.tags = ['Banners']
-     #swagger.security = [{ "bearerAuth": [] }]
-     #swagger.requestBody = {
-     required: true,
-     schema: {$ref: "#/components/schemas/CreateBannerRequest"}
-     }
-     */
     try {
       await bannerDao.validate(req.body);
       const result = await BannerModel.create(req.body);
