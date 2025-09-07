@@ -8,11 +8,11 @@ const doc = {
   },
   servers: [
     {
-      url: "http://localhost:3001/api",
+      url: "http://localhost:3000/api",
       description: "Local Server",
     },
     {
-      url: "https://back-end-acara.vercel.app/api",
+      url: "https://backend-event-farrel.vercel.app/api",
       description: "Deploy Server",
     },
   ],
