@@ -15,20 +15,21 @@ export const ticketDao = Yup.object({
 export type TypeTicket = Yup.InferType<typeof ticketDao>;
 
 interface Ticket extends Omit<TypeTicket, "events"> {
-  events: Schema.Types.ObjectId[];
+  events: Schema.Types.ObjectId;
 }
 
 const TicketSchema = new Schema<Ticket>(
   {
     price: { type: Schema.Types.Number, required: true },
     name: { type: Schema.Types.String, required: true },
-    events: [{ type: Schema.Types.ObjectId, required: true, ref: EVENT_MODEL_NAME }],
     description: { type: Schema.Types.String, required: true },
+    events: { type: Schema.Types.ObjectId, required: true, ref: EVENT_MODEL_NAME },
     quantity: { type: Schema.Types.Number, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 ).index({ name: "text" });
 
 const TicketModel = mongoose.model(TICKET_MODEL_NAME, TicketSchema);
-
 export default TicketModel;
