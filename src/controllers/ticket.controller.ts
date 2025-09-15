@@ -56,7 +56,7 @@ export default {
       const { id } = req.params;
 
       if (!isValidObjectId(id)) {
-        return response.notFound(res, "failed find one a ticket");
+        return response.notFound(res, "failed find one event id for a ticket");
       }
 
       const result = await TicketModel.findById(id);
