@@ -1,9 +1,9 @@
 import express from "express";
 import authController from "../controllers/auth.controller";
-import authMiddleware from "../middlewares/auth.middleware";
-import aclMiddleware from "../middlewares/acl.middleware";
+import authMiddleware from "../middleware/auth.middleware";
+import aclMiddleware from "../middleware/acl.middleware";
 import { ROLES } from "../utils/constant";
-import mediaMiddleware from "../middlewares/media.middleware";
+import mediaMiddleware from "../middleware/media.middleware";
 import mediaController from "../controllers/media.controller";
 import categoryController from "../controllers/category.controller";
 import regionController from "../controllers/region.controller";
