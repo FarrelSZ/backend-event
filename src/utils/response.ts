@@ -19,9 +19,8 @@ export default {
     });
   },
   error(res: Response, error: unknown, message: string) {
-    // error untuk yup
     if (error instanceof Yup.ValidationError) {
-      res.status(400).json({
+      return res.status(400).json({
         meta: {
           status: 400,
           message,
@@ -31,9 +30,9 @@ export default {
         },
       });
     }
-    // error mongoose
+
     if (error instanceof mongoose.Error) {
-      res.status(500).json({
+      return res.status(500).json({
         meta: {
           status: 500,
           message: error.message,
@@ -41,13 +40,13 @@ export default {
         data: error.name,
       });
     }
-    // error dari data nya langsung
+
     if ((error as any)?.code) {
       const _err = error as any;
       return res.status(500).json({
         meta: {
           status: 500,
-          message: _err.errorResponse.errmsg,
+          message: _err?.errorResponse?.errmsg || "server error",
         },
         data: _err,
       });
@@ -56,24 +55,24 @@ export default {
     res.status(500).json({
       meta: {
         status: 500,
-        message: message,
-      },
-      data: error,
-    });
-  },
-  unauthorized(res: Response, message: string = "unauthorized") {
-    res.status(403).json({
-      meta: {
-        status: 403,
         message,
       },
-      data: null,
+      data: error,
     });
   },
   notFound(res: Response, message: string = "not found") {
     res.status(404).json({
       meta: {
         status: 404,
+        message,
+      },
+      data: null,
+    });
+  },
+  unauthorized(res: Response, message: string = "unauthorized") {
+    res.status(403).json({
+      meta: {
+        status: 403,
         message,
       },
       data: null,

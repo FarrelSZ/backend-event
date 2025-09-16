@@ -24,12 +24,12 @@ export default {
 
       const total: number = +ticket?.price * +payload.quantity;
 
-      Object.assign(payload, {
+      const orderData = {
         ...payload,
         total,
-      });
+      };
 
-      const result = await OrderModel.create(payload);
+      const result = await OrderModel.create(orderData);
       response.success(res, result, "success to create an order");
     } catch (error) {
       response.error(res, error, "failed to create an order");
