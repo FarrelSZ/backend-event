@@ -320,6 +320,34 @@
         ]
       }
     },
+    "/orders/{orderId}/remove": {
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": ""
+          }
+        ]
+      }
+    },
     "/banners": {
       "post": {
         "tags": [
