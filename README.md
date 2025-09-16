@@ -66,5 +66,5 @@ npm run dev
 ```
 ---
 
-Untuk yang frontend, github nya ada di sini:
+Untuk yang frontend, github nya ada di sini: https://github.com/FarrelSZ/Frontend-event-app
 
