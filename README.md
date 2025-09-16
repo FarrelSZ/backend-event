@@ -35,17 +35,17 @@ Aplikasi ini membantu pengguna (admin & member) untuk membuat, mengelola, dan me
 
 ---
 
-## 🛠️ Tech Stack  
+## 🛠️ Tech Stack   
 
-### 🎨 Frontend  
-- **React JS 19** → Frontend Library  
-- **Next JS 15** → React Framework  
-- **Tailwind CSS** → CSS Framework  
-- **Next UI / Hero UI** → UI Component Library  
-- **Tanstack React Query + Axios** → Data Fetching & API Handling  
-- **React Hook Form + Yup** → Form Handling & Data Validation  
-- **Next Auth** → Authentication Library  
-- **Midtrans** → Payment Gateway  
+### ⚙️ Backend  
+- **Express JS** → Backend Framework  
+- **MongoDB + Mongoose** → Database & ODM  
+- **Swagger** → API Documentation  
+- **Yup** → Data Validation  
+- **Nodemailer + Zoho SMTP** → Email Notification  
+- **JWT (JSON Web Token)** → Authentication & Authorization  
+- **EJS** → Template Engine  
+- **Cloudinary** → Cloud Storage untuk gambar/banner  
 
 ---
 
@@ -64,6 +64,7 @@ npm install
 ```bash
 npm run dev
 ```
+---
 
-Github backend ada di sini: 
+Untuk yang frontend, github nya ada di sini:
 
