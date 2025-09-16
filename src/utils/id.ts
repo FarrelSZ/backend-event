@@ -1,4 +1,4 @@
-import { customAlphabet } from "nanoid";
+const { customAlphabet } = require("nanoid");
 
 export const getId = (): string => {
   const nanodId = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
