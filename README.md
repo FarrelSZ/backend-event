@@ -47,16 +47,6 @@ Aplikasi ini membantu pengguna (admin & member) untuk membuat, mengelola, dan me
 - **Next Auth** → Authentication Library  
 - **Midtrans** → Payment Gateway  
 
-### ⚙️ Backend  
-- **Express JS** → Backend Framework  
-- **MongoDB + Mongoose** → Database & ODM  
-- **Swagger** → API Documentation  
-- **Yup** → Data Validation  
-- **Nodemailer + Zoho SMTP** → Email Notification  
-- **JWT (JSON Web Token)** → Authentication & Authorization  
-- **EJS** → Template Engine  
-- **Cloudinary** → Cloud Storage untuk gambar/banner  
-
 ---
 
 ## ⚙️ Cara Menjalankan  
@@ -65,13 +55,15 @@ Aplikasi ini membantu pengguna (admin & member) untuk membuat, mengelola, dan me
 ```bash
 git clone https://github.com/username/eventapp.git
 cd eventapp
-
-cd frontend
+```
+### 2. Install Dependencies 
+```bash
 npm install
+```
+### 3. Jalankan server
+```bash
 npm run dev
+```
 
-cd backend
-npm install
-npm run dev
-
+Github backend ada di sini: 
 
