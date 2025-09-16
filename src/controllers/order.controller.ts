@@ -82,8 +82,44 @@ export default {
   },
   async findAllByMember(req: IReqUser, res: Response) {
     try {
+      const userId = req.user?.id;
+      const buildQuery = (filter: any) => {
+        let query: FilterQuery<TypeOrder> = {
+          createdBy: userId,
+        };
+
+        if (filter.search) query.$text = { $search: filter.search };
+
+        return query;
+      };
+
+      const { limit = 10, page = 1, search } = req.query;
+
+      const query = buildQuery({
+        search,
+      });
+
+      const result = await OrderModel.find(query)
+        .limit(+limit)
+        .skip((+page - 1) * +limit)
+        .sort({ createdAt: -1 })
+        .lean()
+        .exec();
+
+      const count = await OrderModel.countDocuments(query);
+
+      response.pagination(
+        res,
+        result,
+        {
+          current: +page,
+          total: count,
+          totalPages: Math.ceil(count / +limit),
+        },
+        "success find all orders"
+      );
     } catch (error) {
-      response.error(res, error, "failed to and order");
+      response.error(res, error, "failed find all orders");
     }
   },
 
@@ -96,14 +132,17 @@ export default {
         orderId,
         createdBy: userId,
       });
+
       if (!order) return response.notFound(res, "order not found");
 
       if (order.status === OrderStatus.COMPLETED)
         return response.error(res, null, "you have been completed this order");
 
-      // generate voucher
       const vouchers: TypeVoucher[] = Array.from({ length: order.quantity }, () => {
-        return { isPrint: false, voucherId: getId() } as TypeVoucher;
+        return {
+          isPrint: false,
+          voucherId: getId(),
+        } as TypeVoucher;
       });
 
       const result = await OrderModel.findOneAndUpdate(
@@ -115,7 +154,9 @@ export default {
           vouchers,
           status: OrderStatus.COMPLETED,
         },
-        { new: true }
+        {
+          new: true,
+        }
       );
 
       const ticket = await TicketModel.findById(order.ticket);
@@ -137,12 +178,66 @@ export default {
   },
   async pending(req: IReqUser, res: Response) {
     try {
+      const { orderId } = req.params;
+
+      const order = await OrderModel.findOne({
+        orderId,
+      });
+
+      if (!order) return response.notFound(res, "order not found");
+
+      if (order.status === OrderStatus.COMPLETED) {
+        return response.error(res, null, "this order has been completed");
+      }
+
+      if (order.status === OrderStatus.PENDING) {
+        return response.error(res, null, "this order currently in payment pending");
+      }
+
+      const result = await OrderModel.findOneAndUpdate(
+        { orderId },
+        {
+          status: OrderStatus.PENDING,
+        },
+        {
+          new: true,
+        }
+      );
+
+      response.success(res, result, "success to pending an order");
     } catch (error) {
       response.error(res, error, "failed to pending an order");
     }
   },
   async cancelled(req: IReqUser, res: Response) {
     try {
+      const { orderId } = req.params;
+
+      const order = await OrderModel.findOne({
+        orderId,
+      });
+
+      if (!order) return response.notFound(res, "order not found");
+
+      if (order.status === OrderStatus.COMPLETED) {
+        return response.error(res, null, "this order has been completed");
+      }
+
+      if (order.status === OrderStatus.CANCELLED) {
+        return response.error(res, null, "this order currently in payment cancelled");
+      }
+
+      const result = await OrderModel.findOneAndUpdate(
+        { orderId },
+        {
+          status: OrderStatus.CANCELLED,
+        },
+        {
+          new: true,
+        }
+      );
+
+      response.success(res, result, "success to cancelled an order");
     } catch (error) {
       response.error(res, error, "failed to cancelled an order");
     }
