@@ -27,7 +27,7 @@ export type TypeVoucher = {
   isPrint: boolean;
 };
 
-export interface Order extends Omit<TypeOrder, "createdBy | events | ticket"> {
+export interface Order extends Omit<TypeOrder, "createdBy" | "events" | "ticket"> {
   total: number;
   status: OrderStatus;
   payment: TypeResponseMidtrans;
