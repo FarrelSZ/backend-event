@@ -44,7 +44,7 @@ const OrderSchema = new Schema<Order>(
     orderId: { type: Schema.Types.String },
     createdBy: { type: Schema.Types.ObjectId, ref: USER_MODEL_NAME, required: true },
     events: { type: Schema.Types.ObjectId, ref: EVENT_MODEL_NAME, required: true },
-    total: { type: Schema.Types.Number, required: true },
+    total: { type: Schema.Types.Number },
     payment: {
       type: {
         token: { type: Schema.Types.String, required: true },
