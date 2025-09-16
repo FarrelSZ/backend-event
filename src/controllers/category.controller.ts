@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { IPaginationQuery, IReqUser } from "../utils/interface";
-import CategoryModel, { categoryDao } from "../models/category.model";
+import CategoryModel, { categoryDTO } from "../models/category.model";
 import response from "../utils/response";
 import { isValidObjectId } from "mongoose";
 
@@ -11,8 +11,8 @@ export default {
   async create(req: IReqUser, res: Response) {
     try {
       // Validasi data dari request body
-      // categoryDao.validate() akan throw error jika data tidak valid
-      await categoryDao.validate(req.body);
+      // categoryDTO.validate() akan throw error jika data tidak valid
+      await categoryDTO.validate(req.body);
 
       // Simpan data category baru ke database
       // req.body berisi { name, description, dll } dari client

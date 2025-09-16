@@ -4,7 +4,7 @@ import { EVENT_MODEL_NAME } from "./event.model";
 
 export const TICKET_MODEL_NAME = "Ticket";
 
-export const ticketDao = Yup.object({
+export const ticketDTO = Yup.object({
   price: Yup.number().required(),
   name: Yup.string().required(),
   events: Yup.string().required(),
@@ -12,7 +12,7 @@ export const ticketDao = Yup.object({
   quantity: Yup.number().required(),
 });
 
-export type TypeTicket = Yup.InferType<typeof ticketDao>;
+export type TypeTicket = Yup.InferType<typeof ticketDTO>;
 
 interface Ticket extends Omit<TypeTicket, "events"> {
   events: Schema.Types.ObjectId;
