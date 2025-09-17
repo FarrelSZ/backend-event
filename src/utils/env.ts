@@ -19,4 +19,4 @@ export const CLOUDINARY_API_SECRET: string = process.env.CLOUDINARY_API_SECRET |
 
 export const MIDTRNAS_CLIENT_KEY: string = process.env.MIDTRANS_CLIENT_KEY || "";
 export const MIDTRANS_SERVER_KEY: string = process.env.MIDTRANS_SERVER_KEY || "";
-export const MIDTRANS_TANSACTION_URL: string = process.env.MIDTRANS_TANSACTION_URL || "";
+export const MIDTRANS_TRANSACTION_URL: string = process.env.MIDTRANS_TRANSACTION_URL || "";

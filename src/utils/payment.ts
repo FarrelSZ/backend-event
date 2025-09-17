@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MIDTRANS_SERVER_KEY, MIDTRANS_TANSACTION_URL } from "./env";
+import { MIDTRANS_SERVER_KEY, MIDTRANS_TRANSACTION_URL } from "./env";
 
 export interface Payment {
   transaction_details: {
@@ -15,7 +15,7 @@ export type TypeResponseMidtrans = {
 
 export default {
   async createLink(payload: Payment): Promise<TypeResponseMidtrans> {
-    const result = await axios.post<TypeResponseMidtrans>(MIDTRANS_TANSACTION_URL, payload, {
+    const result = await axios.post<TypeResponseMidtrans>(MIDTRANS_TRANSACTION_URL, payload, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

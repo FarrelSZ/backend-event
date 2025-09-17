@@ -246,7 +246,7 @@ export default {
   async remove(req: IReqUser, res: Response) {
     try {
       const { orderId } = req.params;
-      const result = await OrderModel.findByIdAndDelete(
+      const result = await OrderModel.findOneAndDelete(
         {
           orderId,
         },
