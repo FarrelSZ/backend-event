@@ -25,8 +25,8 @@ const doc = {
     },
     schemas: {
       LoginRequest: {
-        identifier: "agung2025",
-        password: "Agung2025!",
+        identifier: "MemberTes",
+        password: "Member123",
       },
       RegisterRequest: {
         fullName: "member2025",
