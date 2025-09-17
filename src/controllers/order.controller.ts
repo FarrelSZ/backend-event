@@ -14,6 +14,7 @@ export default {
         ...req.body,
         createdBy: userId,
       } as TypeOrder;
+
       await orderDTO.validate(payload);
 
       const ticket = await TicketModel.findById(payload.ticket);
@@ -32,6 +33,7 @@ export default {
       const result = await OrderModel.create(payload);
       response.success(res, result, "success to create an order");
     } catch (error) {
+      console.error("❌ CREATE ORDER ERROR:", error);
       response.error(res, error, "failed to create an order");
     }
   },

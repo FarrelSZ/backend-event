@@ -15,14 +15,14 @@ export type TypeResponseMidtrans = {
 
 export default {
   async createLink(payload: Payment): Promise<TypeResponseMidtrans> {
-    const result = await axios.post<TypeResponseMidtrans>(MIDTRANS_TRANSACTION_URL, payload, {
+    const result = await axios.post<TypeResponseMidtrans>(`${MIDTRANS_TRANSACTION_URL}`, payload, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Basic ${Buffer.from(`${MIDTRANS_SERVER_KEY}:`).toString("base64")}`,
       },
     });
-    if (result.status !== 200) {
+    if (result.status !== 201) {
       throw new Error("payment failed");
     }
     return result?.data;
