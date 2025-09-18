@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import db from "./utils/database";
 import docs from "./docs/route";
 import cors from "cors";
+import errorMiddleware from "./middleware/error.middleware";
 
 async function init() {
   try {
@@ -20,8 +21,13 @@ async function init() {
     docs(app);
 
     app.get("/", (req, res) => {
-      res.status(200).json({ message: "Hello World!", data: null });
+      res.status(200).json({ message: "Server's running", data: null });
+      // bikin kalau error
+      res.status(500).json({ message: "Ada error, coba cek di log", data: null });
     });
+
+    app.use(errorMiddleware.serverRoute());
+    app.use(errorMiddleware.serverError());
 
     app.listen(PORT, () => {
       console.log(`Server's running on http://localhost:${PORT}`);
