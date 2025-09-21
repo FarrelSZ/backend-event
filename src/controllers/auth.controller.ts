@@ -9,9 +9,9 @@ export default {
   async updateProfile(req: IReqUser, res: Response) {
     try {
       const userId = req.user?.id;
-      const { fullname, profilePicture } = req.body;
+      const { fullName, profilePicture } = req.body;
 
-      const result = await UserModel.findByIdAndUpdate(userId, { fullname, profilePicture }, { new: true });
+      const result = await UserModel.findByIdAndUpdate(userId, { fullName, profilePicture }, { new: true });
 
       if (!result) return response.notFound(res, "user not found");
 
@@ -38,17 +38,17 @@ export default {
     }
   },
   async register(req: Request, res: Response) {
-    const { fullname, username, email, password, confirmPassword } = req.body;
+    const { fullName, username, email, password, confirmPassword } = req.body;
 
     try {
       await userDTO.validate({
-        fullname,
+        fullName,
         username,
         email,
         password,
         confirmPassword,
       });
-      const result = await UserModel.create({ fullname, username, email, password });
+      const result = await UserModel.create({ fullName, username, email, password });
 
       response.success(res, result, "success registration");
     } catch (error) {
