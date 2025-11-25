@@ -12,13 +12,12 @@ import ticketController from "../controllers/ticket.controller";
 import bannerController from "../controllers/banner.controller";
 import orderController from "../controllers/order.controller";
 import { renderMailHtml, sendEmail } from "../utils/mail/mail";
-import response from "../utils/response";
 
 const router = express.Router();
 
-router.get("/test-email", async (req, res) => {
+router.get("/registration-success", async (req, res) => {
   try {
-    const content = await renderMailHtml("test-email.ejs", {});
+    const content = await renderMailHtml("registration-success.ejs", {});
     await sendEmail({
       html: content,
       from: "farel.it12@gmail.com",
