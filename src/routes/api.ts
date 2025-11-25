@@ -11,8 +11,30 @@ import eventController from "../controllers/event.controller";
 import ticketController from "../controllers/ticket.controller";
 import bannerController from "../controllers/banner.controller";
 import orderController from "../controllers/order.controller";
+import { renderMailHtml, sendEmail } from "../utils/mail/mail";
+import response from "../utils/response";
 
 const router = express.Router();
+
+router.get("/test-email", async (req, res) => {
+  try {
+    const content = await renderMailHtml("test-email.ejs", {});
+    await sendEmail({
+      html: content,
+      from: "farel.it12@gmail.com",
+      to: "farel.it12@gmail.com",
+      subject: "test email",
+    });
+
+    res.status(200).json({
+      message: "Email sent succesfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to send email",
+    });
+  }
+});
 
 router.post(
   "/auth/register",
